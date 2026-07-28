@@ -1,0 +1,36 @@
+# Virtual machine artefacts — never commit these
+*.vmdk
+*.vmx
+*.vmsd
+*.vmsn
+*.nvram
+*.vmem
+*.iso
+*.ova
+*.qcow2
+*.vdi
+
+# Credentials and keys — never commit these
+*.pem
+*.key
+*.ppk
+id_rsa*
+secrets.*
+.env
+
+# Raw log exports (keep curated evidence only)
+# NOTE: evidence files must be saved as .txt or .md, never .log,
+# or they will be silently excluded from commits.
+*.evtx
+*.pcapng
+*.pcap
+*.log
+
+# Obsidian vault metadata (workspace state, plugin config, cache)
+.obsidian/
+.trash/
+
+# OS noise
+Thumbs.db
+.DS_Store
+desktop.ini

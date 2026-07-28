@@ -1,0 +1,11 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Unix targets — must keep LF
+*.sh   text eol=lf
+*.py   text eol=lf
+*.conf text eol=lf
+*.yml  text eol=lf
+
+# Windows targets — must keep CRLF
+*.ps1  text eol=crlf
