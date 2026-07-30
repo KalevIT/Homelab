@@ -19,8 +19,8 @@ secrets.*
 .env
 
 # Raw log exports (keep curated evidence only)
-# NOTE: evidence files must be saved as .txt or .md, never .log,
-# or they will be silently excluded from commits.
+# NOTE: evidence files are always .md (see README, File conventions).
+# Never save evidence as .log — it would be silently excluded from commits.
 *.evtx
 *.pcapng
 *.pcap

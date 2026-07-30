@@ -36,15 +36,15 @@ Machines are built **only when their phase unlocks**. Building early is not prep
 it consumes disk, and on Microsoft evaluation media it starts a licence clock that
 expires long before the machine is used.
 
-| Role | Guest OS | vCPU | RAM | Disk | Network | Phase |
-|---|---|---|---|---|---|---|
-| `LAB01` | Ubuntu Server LTS | 2 | 4 GB | 25 GB | NAT → later LAN | 0 |
-| `CLIENT01` | Windows 11 | 2 | 4 GB | 60 GB | LAN | 1 |
-| `FW01` | firewall appliance | 1 | 2 GB | 10 GB | WAN + mgmt + LAN | 2 |
-| `DC01` | Windows Server | 2 | 4 GB | 60 GB | LAN | 3 |
-| `SIEM01` | Ubuntu Server LTS | 2 | 6-8 GB | 150 GB | LAN | 4 |
-| `ATK01` | Kali Linux | 2 | 4 GB | 80 GB | LAN | 5 |
-| `TGT01` | vulnerable appliance | 1 | 1 GB | 8 GB | **Detonation segment** | 5 |
+| Role       | Guest OS             | vCPU | RAM    | Disk   | Network                | Phase |
+| ---------- | -------------------- | ---- | ------ | ------ | ---------------------- | ----- |
+| `LAB01`    | Ubuntu Server LTS    | 2    | 4 GB   | 25 GB  | NAT → later LAN        | 0     |
+| `CLIENT01` | Windows 11           | 2    | 4 GB   | 60 GB  | LAN                    | 1     |
+| `FW01`     | firewall appliance   | 1    | 2 GB   | 10 GB  | WAN + mgmt + LAN       | 2     |
+| `DC01`     | Windows Server       | 2    | 4 GB   | 60 GB  | LAN                    | 3     |
+| `SIEM01`   | Ubuntu Server LTS    | 2    | 6-8 GB | 150 GB | LAN                    | 4     |
+| `ATK01`    | Kali Linux           | 2    | 4 GB   | 80 GB  | LAN                    | 5     |
+| `TGT01`    | vulnerable appliance | 1    | 1 GB   | 8 GB   | **Detonation segment** | 5     |
 
 ### Evaluation licence timing
 

@@ -4,7 +4,7 @@ A documented, phase-based home cybersecurity laboratory built on a single workst
 Purpose: build practical blue-team skills and support CompTIA Security+ (SY0-701) preparation.
 
 > **Status:** Phase 0 — Foundations (in progress)
-> **Last updated:** 2026-07-28
+> **Last updated:** 2026-07-29
 
 ---
 
@@ -20,6 +20,19 @@ Four rules for this repo:
 3. **Evidence over description.** Screenshots, config exports and command output live in `evidence/`.
 4. **Sanitise before committing.** See [`docs/sanitization-policy.md`](docs/sanitization-policy.md).
 
+### File conventions
+
+| Rule | Detail |
+|---|---|
+| Every document is Markdown | `.md` only, with no exceptions, so that one convention covers the whole repository |
+| Verbatim output goes in fenced blocks | Command output is wrapped in a fenced code block and never edited to render better |
+| Evidence is numbered per phase | `evidence/phase-NN/NN-short-name.md`, numbered in the order produced |
+| English throughout | Documentation is written in English regardless of working language |
+
+Wrapping raw output in a fenced block is what makes `.md` safe for evidence: Markdown
+would otherwise interpret characters that appear routinely in command output —
+asterisks, underscores, hashes — as formatting instructions.
+
 ---
 
 ## 2. Hardware baseline
@@ -31,7 +44,7 @@ Full detail: [`docs/hardware-baseline.md`](docs/hardware-baseline.md)
 | CPU | AMD Ryzen 9 9900X — 12C / 24T (Zen 5) |
 | RAM | 32 GB DDR5-6400 (2 of 4 slots populated) |
 | Platform | AMD Socket AM5, X670 chipset |
-| Host OS | Windows 11 Pro (24H2 branch) |
+| Host OS | Windows 11 Pro (25H2 branch) |
 | Lab storage | 1x NVMe PCIe 4.0, ~930 GB dedicated |
 | Networking | Wired 2.5GbE only; wireless physically removed |
 | Hypervisor | VMware Workstation Pro (free tier) |
@@ -57,7 +70,8 @@ not around total VM count.
 │   └── phases/                # One document per phase, written as it is completed
 ├── vm-configs/                # Exported VM settings, .vmx notes, build sheets
 ├── scripts/                   # Automation (PowerShell / Bash), one folder per purpose
-└── evidence/                  # Command output, screenshots, config dumps per phase
+└── evidence/                  # Command output and config dumps, one folder per phase
+    └── phase-00/              # 01-host-adapters.md, 02-iso-checksum.md, ...
 ```
 
 **Why this layout:** `docs/` is human-readable narrative, `evidence/` is raw proof,

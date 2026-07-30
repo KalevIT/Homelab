@@ -55,10 +55,10 @@ No security tooling. No attack tools. This phase exists because every later phas
 assumes the shell is not an obstacle.
 
 **Exit criteria**
-- [ ] Virtual Network Editor corrected; host has no adapter on the lab segment
-- [ ] VM datastore relocated to the dedicated lab drive
-- [ ] Ubuntu Server LTS installed from checksum-verified media, no GUI
-- [ ] Snapshot taken, VM deliberately broken, snapshot restored successfully
+- [x] Virtual Network Editor corrected; host has no adapter on the lab segment
+- [x] VM datastore relocated to the dedicated lab drive
+- [x] Ubuntu Server LTS installed from checksum-verified media, no GUI
+- [x] Snapshot taken, VM deliberately broken, snapshot restored successfully
 - [ ] SSH key-based authentication working; password authentication disabled
 - [ ] OverTheWire *Bandit* levels 0-20 completed
 - [ ] Exit test passed and explained in writing
@@ -137,7 +137,7 @@ time and must be re-evaluated, not assumed now.
 
 | Phase | Exit criteria met | Total |
 |---|---|---|
-| 0 | 1 | 8 |
+| 0 | 4 | 8 |
 | 1 | 0 | 6 |
 | 2 | 0 | 4 |
 | 3 | 0 | 4 |

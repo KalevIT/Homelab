@@ -177,7 +177,7 @@ Each item is confirmed with evidence stored under `evidence/`, in the folder of 
 phase that proves it:
 
 - [x] Windows host has **no** network adapter on the lab subnet (`ipconfig /all`)
-      — verified 2026-07-28, `evidence/phase-00/01-host-adapters.txt`
+      — verified 2026-07-28, `evidence/phase-00/01-host-adapters.md`
 - [ ] Windows host **can** reach the firewall management address
 - [ ] A lab VM receives its address from the firewall, not from VMware
 - [ ] A lab VM **cannot** reach the Windows host

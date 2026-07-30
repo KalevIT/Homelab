@@ -1,5 +1,59 @@
 # Changelog
 
+## 2026-07-29 (2) — Single file convention adopted
+
+### Changed
+- All evidence files converted from `.txt` to `.md`. The repository now uses one
+  document format throughout, with no exceptions.
+- Verbatim command output is wrapped in fenced code blocks. This is what makes
+  Markdown safe for evidence: without fencing, characters that appear routinely in
+  command output — asterisks, underscores, hashes — would be interpreted as
+  formatting rather than displayed.
+
+### Added
+- `README.md`: a **File conventions** section recording the rule, so the choice is
+  documented rather than remembered.
+
+### Rationale
+- The earlier split (`.txt` for verbatim capture, `.md` for written documents) was
+  defensible but imposed a second convention to keep track of for no functional gain
+  once output is fenced. A single rule that is always true is easier to follow than a
+  correct rule with exceptions.
+
+### Fixed
+- Evidence numbering made contiguous across the phase. Two Phase 0 steps referenced
+  file numbers that collided with files already written.
+
+## 2026-07-29 — LAB01 built, snapshot restore proven
+
+### Done
+- `LAB01` built and installed: Ubuntu Server 26.04 LTS, standard install, no desktop,
+  2 vCPU, 4 GB, 25 GB LVM, attached to VMnet8. Media checksum verified before use.
+- Snapshot `clean-install-20260729` created, `/etc/fstab` deliberately corrupted,
+  boot failure into emergency mode observed, snapshot restored and verified clean.
+- Four evidence files committed under `evidence/phase-00/`.
+- Phase 0 exit criteria 1 to 4 met. Four of eight.
+
+### Fixed
+- Host OS recorded as Windows 11 Pro **25H2**, not 24H2. Build 26200 is 25H2; 24H2 is
+  build 26100. The error was in the documentation, not the host, and was found by
+  checking a figure supplied rather than accepting it.
+- Documented datastore layout corrected to the structure actually built
+  (`ISO\`, `DISKS\`, `GITHUB.REPO\`). The build was aligned to reality rather than
+  the reverse.
+
+### Corrected
+- Phase 0 previously specified a **minimized** server install. This was wrong: the
+  minimized variant removes manual pages, documentation and editors, and this phase
+  relies on `man` as its primary reference. Standard "Ubuntu Server" is now specified.
+
+### Recorded
+- SHA-256 verification proves integrity, not authenticity. GPG verification of
+  `SHA256SUMS` against Canonical's signing key was not performed and is logged as a
+  known gap in `evidence/phase-00/02-iso-checksum.md`.
+- The installer's LVM layout leaves part of the volume group unallocated by design
+  (~11.5 GB of 23 GB assigned to `/`). Noted so it is not mistaken for a fault.
+
 ## 2026-07-28 (2) — Repository published
 
 ### Fixed

@@ -10,14 +10,14 @@ See [`sanitization-policy.md`](sanitization-policy.md) for the rules applied.
 
 ## 1. Host system
 
-| Item | Value |
-|---|---|
-| Platform | AMD Socket AM5, X670 chipset (consumer ATX) |
-| CPU | AMD Ryzen 9 9900X — 12 cores / 24 threads, Zen 5, 120 W TDP |
-| GPU | NVIDIA GeForce RTX 3070 Ti, 8 GB |
-| Host OS | Windows 11 Pro 64-bit (24H2 branch) |
-| Wired NIC | Realtek Gaming 2.5GbE Family Controller |
-| Wireless | Disabled — antennas physically removed |
+| Item       | Value                                                       |
+| ---------- | ----------------------------------------------------------- |
+| Platform   | AMD Socket AM5, X670 chipset (consumer ATX)                 |
+| CPU        | AMD Ryzen 9 9900X — 12 cores / 24 threads, Zen 5, 120 W TDP |
+| GPU        | NVIDIA GeForce RTX 3070 Ti, 8 GB                            |
+| Host OS    | Windows 11 Pro 64-bit (25H2 branch)                         |
+| Wired NIC  | Realtek Gaming 2.5GbE Family Controller                     |
+| Wireless   | Disabled — antennas physically removed                      |
 | Hypervisor | VMware Workstation Pro (free tier, no licence key required) |
 
 The host is wired-only by design. Removing the wireless attack surface entirely is a

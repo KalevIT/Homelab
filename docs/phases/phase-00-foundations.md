@@ -44,7 +44,7 @@ Reasoning is documented in [`../lab-architecture.md`](../lab-architecture.md).
 
 **Verification:** run `ipconfig` on the Windows host. Adapters for VMnet1 and VMnet8
 must be present. **No adapter for VMnet2 may exist.** Save the output to
-`evidence/phase-00/01-host-adapters.txt` — redacted per the sanitisation policy.
+`evidence/phase-00/01-host-adapters.md` — redacted per the sanitisation policy.
 
 ### Disconnect the VPN client
 
@@ -64,11 +64,13 @@ endurance and must receive no virtual machine data.
 Create the directory structure on the lab drive:
 
 ```
-<lab-drive>\
+<lab-drive>\VM\
 ├── ISO\          # Installation media
-├── VMs\          # Virtual machines
-└── Backups\      # Exported VMs
+├── DISKS\        # Virtual machines
+└── GITHUB.REPO\  # This repository
 ```
+
+Recorded as built, not as originally planned.
 
 ## Step 3 — Build the virtual machine
 
@@ -104,7 +106,18 @@ this one.
 | Network | **NAT (VMnet8)** | Package installation requires internet; the firewall does not exist yet |
 | Installation | Minimal, **no desktop environment** | A GUI defeats the purpose of this phase |
 
-Enable OpenSSH server during installation. Do not install additional snaps.
+Enable OpenSSH server during installation. Do not import SSH keys — those are
+configured by hand in Step 5. Do not install additional snaps.
+
+**Installation type: standard "Ubuntu Server", not "minimized".** The minimized
+variant strips manual pages, documentation and editors; it targets containers and
+automated deployment. This phase treats `man` as the primary reference, so the
+standard install is required.
+
+**Storage: guided, whole disk, LVM enabled.** The installer deliberately assigns only
+part of the volume group to the root logical volume — on a 25 GB disk, roughly 11.5 GB
+to `/` with the remainder left unallocated. This is expected behaviour, not an error,
+and extending the volume later is a useful exercise in its own right.
 
 **Why NAT and not the lab segment:** the lab LAN has no gateway until a firewall is
 built in Phase 2. Attaching this VM to VMnet2 now would produce a machine with no
@@ -123,7 +136,7 @@ Immediately after a clean installation and first `apt update && apt upgrade`:
 It is only available to someone who has actually tested the restore path, rather than
 assuming it works.
 
-Record the snapshot names and outcome in `evidence/phase-00/02-snapshot-test.md`.
+Record the snapshot names and outcome in `evidence/phase-00/04-snapshot-test.md`.
 
 ## Step 5 — SSH key-based access from the host
 
@@ -176,10 +189,13 @@ Work through these in order. All are free and legitimate.
 
 ## Exit criteria
 
-- [ ] Virtual Network Editor corrected; host has no adapter on the lab segment
-- [ ] VM datastore relocated to the lab drive
-- [ ] Ubuntu Server LTS installed from checksum-verified media, no GUI
-- [ ] Snapshot taken, machine deliberately broken, snapshot restored successfully
+- [x] Virtual Network Editor corrected; host has no adapter on the lab segment
+      — `evidence/phase-00/01-host-adapters.md`
+- [x] VM datastore relocated to the lab drive
+- [x] Ubuntu Server LTS installed from checksum-verified media, no GUI
+      — `evidence/phase-00/02-iso-checksum.md`, `03-lab01-config.md`
+- [x] Snapshot taken, machine deliberately broken, snapshot restored successfully
+      — `evidence/phase-00/04-snapshot-test.md`
 - [ ] SSH key-based authentication working; password authentication disabled
 - [ ] OverTheWire Bandit levels 0-20 completed
 - [ ] **Exit test passed** (below)
@@ -193,7 +209,7 @@ Without notes, without a search engine, and without assistance:
 > and list the source addresses ordered by number of attempts.
 
 Solve it, then write the command and an explanation of each component into
-`evidence/phase-00/03-exit-test.md`.
+`evidence/phase-00/07-exit-test.md`.
 
 The explanation is the point. A command copied from elsewhere that produces the right
 output is not a pass. Being able to state what each flag does, and why the pipeline is
