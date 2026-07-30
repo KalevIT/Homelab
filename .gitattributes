@@ -1,11 +1,19 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Line endings are normalised to LF everywhere in this repository.
+#
+# Rationale: this repository is documentation and Linux-targeted scripts. LF is what
+# GitHub renders, what the lab machines expect, and what every editor in use here
+# handles without complaint. Fixing the ending explicitly removes the conversion
+# warnings that appear when the default (convert to CRLF on Windows checkout) is left
+# in place.
 
-# Unix targets — must keep LF
-*.sh   text eol=lf
-*.py   text eol=lf
-*.conf text eol=lf
-*.yml  text eol=lf
+* text=auto eol=lf
 
-# Windows targets — must keep CRLF
+# Windows targets — these must keep CRLF
 *.ps1  text eol=crlf
+*.bat  text eol=crlf
+*.cmd  text eol=crlf
+
+# Binary — never converted
+*.png  binary
+*.jpg  binary
+*.pdf  binary
