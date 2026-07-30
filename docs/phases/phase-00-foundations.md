@@ -155,8 +155,9 @@ PasswordAuthentication no
 PubkeyAuthentication yes
 ```
 
-Reload the service and verify that key-based login succeeds and password login is
-refused.
+Validate the configuration with `sudo sshd -t` **before** restarting the service, keep
+the existing session open, and test from a second window. A syntax error combined with
+a closed session leaves the machine reachable only from the console.
 
 **Why this matters beyond convenience:** this is the first hardening control applied
 in the lab, and the reasoning behind it — eliminating credential guessing as an attack
@@ -196,7 +197,8 @@ Work through these in order. All are free and legitimate.
       — `evidence/phase-00/02-iso-checksum.md`, `03-lab01-config.md`
 - [x] Snapshot taken, machine deliberately broken, snapshot restored successfully
       — `evidence/phase-00/04-snapshot-test.md`
-- [ ] SSH key-based authentication working; password authentication disabled
+- [x] SSH key-based authentication working; password authentication disabled
+      — `evidence/phase-00/05-ssh-key-auth.md`
 - [ ] OverTheWire Bandit levels 0-20 completed
 - [ ] **Exit test passed** (below)
 - [ ] This document updated with what actually happened, including what went wrong

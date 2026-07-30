@@ -59,7 +59,7 @@ assumes the shell is not an obstacle.
 - [x] VM datastore relocated to the dedicated lab drive
 - [x] Ubuntu Server LTS installed from checksum-verified media, no GUI
 - [x] Snapshot taken, VM deliberately broken, snapshot restored successfully
-- [ ] SSH key-based authentication working; password authentication disabled
+- [x] SSH key-based authentication working; password authentication disabled
 - [ ] OverTheWire *Bandit* levels 0-20 completed
 - [ ] Exit test passed and explained in writing
 - [ ] `phase-00-foundations.md` updated with what actually happened
@@ -137,7 +137,7 @@ time and must be re-evaluated, not assumed now.
 
 | Phase | Exit criteria met | Total |
 |---|---|---|
-| 0 | 4 | 8 |
+| 0 | 5 | 8 |
 | 1 | 0 | 6 |
 | 2 | 0 | 4 |
 | 3 | 0 | 4 |

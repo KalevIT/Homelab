@@ -1,5 +1,26 @@
 # Changelog
 
+## 2026-07-30 — SSH key authentication, passwords disabled
+
+### Done
+- Ed25519 key pair generated on the host, public key installed on `LAB01`.
+- `PasswordAuthentication no` applied in `sshd_config`, validated with `sshd -t` before
+  restart, tested from a second session while the first was held open.
+- Phase 0 exit criterion 5 met. Five of eight.
+- Evidence: `evidence/phase-00/05-ssh-key-auth.md`.
+
+### Fixed
+- `.gitignore` matched `id_rsa*` only — a pattern predating Ed25519. The key generated
+  here is named `id_ed25519` and would not have been excluded. Patterns extended to
+  `id_ed25519*`, `id_ecdsa*`, `*.pub`, `known_hosts*` and `authorized_keys`.
+- Consequence had it gone unnoticed: a private key copied into the working tree would
+  have been committed silently to a now-public repository.
+
+### Recorded
+- The key passphrase is intentionally empty. `LAB01` is an internal laboratory host and
+  the risk is accepted. Standing rule adopted: any key reaching anything outside the
+  lab carries a passphrase, with `ssh-agent` handling repetition.
+
 ## 2026-07-29 (2) — Single file convention adopted
 
 ### Changed
