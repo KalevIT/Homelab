@@ -2,7 +2,11 @@
 
 **Exit criterion 5:** SSH key-based authentication working; password authentication
 disabled.
-**Date:** 2026-07-30
+**Date:** 2026-07-30, corrected 2026-08-02
+
+> **This document was wrong when first written.** The criterion was recorded as met on
+> 2026-07-30 while password authentication was in fact still enabled. See
+> *Correction* at the end — the reasoning error is the useful part.
 
 ---
 
@@ -74,18 +78,44 @@ as the snapshot test: prove the new path before removing the old one.
 
 ## Verification
 
-Login before the change — password prompted:
+Two separate claims have to be proven, and proving one does not prove the other:
+
+1. key-based authentication works
+2. password authentication is refused
+
+**Test 1 — the key works.** No prompt appears; the session opens directly:
 
 ```
-user@192.168.231.129's password:
+ssh user@<lab-address>
 ```
-
-Login after the change — no prompt, authenticated by key:
 
 ```
 Welcome to Ubuntu 26.04 LTS (GNU/Linux 7.0.0-28-generic x86_64)
-Last login: Thu Jul 30 20:44:33 2026 from 192.168.231.1
 user@lab01:~$
+```
+
+**Test 2 — the password is refused.** Public-key authentication is disabled for this
+attempt, forcing the server to fall back:
+
+```
+ssh -o PubkeyAuthentication=no user@<lab-address>
+```
+
+```
+user@<lab-address>: Permission denied (publickey).
+```
+
+The server refuses rather than prompting. If a password prompt appears here, password
+authentication is still enabled regardless of what the configuration file says.
+
+**Configuration confirmed as loaded, not as written:**
+
+```bash
+sudo sshd -T | grep -i passwordauthentication
+```
+
+```
+passwordauthentication no
 ```
 
 **Criterion met.**
@@ -106,6 +136,48 @@ indistinguishable unless one is written down.
 **Standing rule for this lab:** any key that reaches something outside the lab —
 version control, a real server, a cloud account — carries a passphrase, with
 `ssh-agent` handling the repetition. No exceptions.
+
+### Correction: the criterion was recorded as met before it was
+
+On 2026-07-30 this document recorded the criterion as satisfied. It was not. Password
+authentication remained enabled for three days.
+
+**What was verified:** that key-based login succeeded without a prompt.
+
+**What was concluded:** that password authentication was disabled.
+
+The conclusion did not follow. SSH offers authentication methods in order and stops at
+the first that succeeds. The key was offered first and worked, so no prompt appeared —
+which says nothing about whether a password would also have been accepted.
+
+**How it surfaced.** During a later exercise the home directory was temporarily set to
+mode 777. `sshd` then refused the key — correctly, because a world-writable home means
+`authorized_keys` can be replaced by anyone — and **fell back to a password prompt,
+which succeeded.** The fallback should not have existed.
+
+**Root cause.** Ubuntu's `sshd_config` carries an `Include` directive for
+`/etc/ssh/sshd_config.d/*.conf` at line 24. The manual edit was made at line 78.
+Cloud-init had written `PasswordAuthentication yes` into
+`50-cloud-init.conf` during installation, and for most SSH options **the first value
+read wins**. The included file was read first; the later edit was ignored.
+
+No error was produced. The file said `no`, the service used `yes`.
+
+**Fix.** The directive in `50-cloud-init.conf` was corrected, validated with
+`sshd -t`, confirmed with `sshd -T`, and only then applied with a service restart. The
+existing session was held open throughout.
+
+**Lessons recorded rather than tidied away:**
+
+1. **`sshd -T` reports the loaded configuration; the file reports an intention.** When
+   a setting matters, the loaded value is the one to check.
+2. **A control is not verified until its failure path is tested.** "The key works" and
+   "the password is refused" are separate claims requiring separate tests.
+3. **A configuration believed applied but silently overridden is worse than one never
+   attempted**, because it produces confidence without protection. Nothing signals the
+   discrepancy until something exercises it.
+4. Drop-in configuration directories are ordinary on modern distributions. Editing the
+   main file is not sufficient on its own.
 
 ### Gap found in `.gitignore`
 
