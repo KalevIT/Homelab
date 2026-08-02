@@ -1,5 +1,37 @@
 # Changelog
 
+## 2026-08-02 — Bandit completed, Phase 0 at six of eight
+
+### Done
+- OverTheWire *Bandit* levels 0-20 completed. Phase 0 exit criterion 6 met.
+- Level 20 onward is outside the scope defined in `ROADMAP.md` and was not attempted.
+
+### Added
+- `evidence/phase-00/06-bandit.md` — what each group of levels taught, with solutions
+  and passwords deliberately excluded per OverTheWire's stated request.
+- `evidence/phase-00/07-setuid-baseline.md` — the set of setuid binaries present on
+  `LAB01` in a known-good state, with the comparison procedure.
+- `docs/exercises/permissions-and-services.md` — three further consolidation sessions
+  covering permissions and setuid, change detection by comparison, and network
+  service discovery.
+
+### Concepts recorded
+- **setuid** grants the owner's privileges to any caller with execute permission. Not
+  `sudo`: no prompt, no audit record. It is the mechanism behind most local privilege
+  escalation, and the defensive counterpart is a recorded baseline.
+- **Shell startup files are a persistence mechanism.** A file that executes on every
+  login restarts anything written into it. Detection is a comparison problem: the
+  modified file is indistinguishable from normal until placed beside a known-good copy.
+- **Automated service identification is a hypothesis.** A scanner reports what a
+  service claimed when probed. Confirming by hand is a separate step.
+- **Encoding is not encryption.** No key, reversible by anyone. Distinct from
+  encryption and from hashing.
+
+### Method note
+- Two early levels were solved by inspecting files individually rather than using the
+  intended tool. This works at a scale of ten files and will not work in Phase 4.
+  Recorded rather than tidied away.
+
 ## 2026-08-01 — Phase 0 paused for consolidation
 
 ### Added

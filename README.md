@@ -4,7 +4,7 @@ A documented, phase-based home cybersecurity laboratory built on a single workst
 Purpose: build practical blue-team skills and support CompTIA Security+ (SY0-701) preparation.
 
 > **Status:** Phase 0 — Foundations (in progress)
-> **Last updated:** 2026-08-01
+> **Last updated:** 2026-08-02
 
 ---
 

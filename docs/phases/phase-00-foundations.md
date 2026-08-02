@@ -199,7 +199,8 @@ Work through these in order. All are free and legitimate.
       — `evidence/phase-00/04-snapshot-test.md`
 - [x] SSH key-based authentication working; password authentication disabled
       — `evidence/phase-00/05-ssh-key-auth.md`
-- [ ] OverTheWire Bandit levels 0-20 completed
+- [x] OverTheWire Bandit levels 0-20 completed
+      — `evidence/phase-00/06-bandit.md`
 - [ ] **Exit test passed** (below)
 - [ ] This document updated with what actually happened, including what went wrong
 
@@ -211,7 +212,7 @@ Without notes, without a search engine, and without assistance:
 > and list the source addresses ordered by number of attempts.
 
 Solve it, then write the command and an explanation of each component into
-`evidence/phase-00/07-exit-test.md`.
+`evidence/phase-00/08-exit-test.md`.
 
 The explanation is the point. A command copied from elsewhere that produces the right
 output is not a pass. Being able to state what each flag does, and why the pipeline is

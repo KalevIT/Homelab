@@ -60,7 +60,7 @@ assumes the shell is not an obstacle.
 - [x] Ubuntu Server LTS installed from checksum-verified media, no GUI
 - [x] Snapshot taken, VM deliberately broken, snapshot restored successfully
 - [x] SSH key-based authentication working; password authentication disabled
-- [ ] OverTheWire *Bandit* levels 0-20 completed
+- [x] OverTheWire *Bandit* levels 0-20 completed
 - [ ] Exit test passed and explained in writing
 - [ ] `phase-00-foundations.md` updated with what actually happened
 
@@ -137,7 +137,7 @@ time and must be re-evaluated, not assumed now.
 
 | Phase | Exit criteria met | Total |
 |---|---|---|
-| 0 | 5 | 8 |
+| 0 | 6 | 8 |
 | 1 | 0 | 6 |
 | 2 | 0 | 4 |
 | 3 | 0 | 4 |
