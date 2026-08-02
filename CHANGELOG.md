@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-08-01 — Phase 0 paused for consolidation
+
+### Added
+- `docs/exercises/cli-fundamentals.md` — five sessions of practice covering output
+  channels, file identification, text transformation, compression and network
+  services, worked on the lab machine rather than on the wargame.
+
+### Decision
+- Bandit progress halted at level 15 of 21. Seven new tools had been used across seven
+  consecutive levels, each introduced by a puzzle that had to be solved immediately.
+  Every level was completed, which is not the same as having learned seven tools.
+- The exercises exist to break that loop: same concepts, own machine, mistakes free.
+  Several exercises induce a failure deliberately, because an observed failure is
+  understood better than a described one.
+
+### Note on scope
+- Bandit level numbers are not mapped to exercises. OverTheWire asks that solutions not
+  be published; naming a tool is harmless, since the level pages list the tools
+  themselves, but publishing the arguments that solve a level is not.
+
 ## 2026-07-30 — SSH key authentication, passwords disabled
 
 ### Done

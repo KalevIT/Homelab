@@ -4,7 +4,7 @@ A documented, phase-based home cybersecurity laboratory built on a single workst
 Purpose: build practical blue-team skills and support CompTIA Security+ (SY0-701) preparation.
 
 > **Status:** Phase 0 — Foundations (in progress)
-> **Last updated:** 2026-07-29
+> **Last updated:** 2026-08-01
 
 ---
 
@@ -67,7 +67,8 @@ not around total VM count.
 │   ├── lab-architecture.md    # Network design, IP plan, firewall policy
 │   ├── sanitization-policy.md # What may and may not be published here
 │   ├── vm-inventory.md        # Target machines, memory budget, previous-build audit
-│   └── phases/                # One document per phase, written as it is completed
+│   ├── phases/                # One document per phase, written as it is completed
+│   └── exercises/             # Reusable practice material written during a phase
 ├── vm-configs/                # Exported VM settings, .vmx notes, build sheets
 ├── scripts/                   # Automation (PowerShell / Bash), one folder per purpose
 └── evidence/                  # Command output and config dumps, one folder per phase
