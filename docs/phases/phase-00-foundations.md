@@ -206,13 +206,20 @@ Work through these in order. All are free and legitimate.
 
 ## Exit test
 
+**Prerequisite:** the consolidation sessions in `docs/exercises/` must be completed
+first, including the one covering `journalctl`. The test was first attempted before
+that session existed and required assistance to finish — not because the material was
+beyond reach, but because the tool it depends on had never been practised. Every other
+tool in this phase was exercised before being required; this one was not, and that
+was a sequencing error.
+
 Without notes, without a search engine, and without assistance:
 
 > Find every failed login attempt on this system in the last 24 hours, count them,
 > and list the source addresses ordered by number of attempts.
 
 Solve it, then write the command and an explanation of each component into
-`evidence/phase-00/08-exit-test.md`.
+`evidence/phase-00/09-exit-test.md`.
 
 The explanation is the point. A command copied from elsewhere that produces the right
 output is not a pass. Being able to state what each flag does, and why the pipeline is

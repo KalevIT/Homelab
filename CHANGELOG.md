@@ -1,5 +1,83 @@
 # Changelog
 
+## 2026-08-03 — Consolidation completed; exit test attempted, not passed
+
+### Done
+- Consolidation sessions F, G and H completed: permissions and privilege, change
+  detection by comparison, network service discovery.
+
+### Added
+- `evidence/phase-00/08-startup-baseline.md` — hashes and file listing for the shell
+  startup files, recorded while `.bashrc` was still byte-identical to the distribution
+  template. The value of a baseline is set by when it was taken.
+- `docs/exercises/log-analysis.md` — a session covering `journalctl`, event counting
+  and pipeline ordering.
+
+### Exit test: attempted, not passed
+- The test requires `journalctl`, which appears in the Phase 0 curriculum but had
+  never been practised. Every other tool in this phase was exercised before being
+  required; this one was not. The attempt therefore measured the sequencing rather
+  than the understanding, and the criterion stays open.
+- Recorded as a prerequisite in `phase-00-foundations.md`: the consolidation sessions
+  come first, then the test.
+
+### Findings from the attempt
+- **Counting log lines is not counting events.** One failed SSH login produces two
+  journal entries sharing a PID, both containing the phrase being searched for. A
+  case-insensitive match counted eleven where there were six. The number was
+  plausible, which is why the error survives review.
+- **A pipeline returned the right answer for the wrong reason.** `sort` had been
+  placed before `cut`, so it ordered full log lines by timestamp rather than grouping
+  addresses. It agreed with the correct version only because each address happened to
+  occupy a contiguous block of time — a property of the data, not of the command.
+  Interleaved sources would have miscounted.
+- The second finding was raised by asking whether a correct result might be specific
+  to the sample. Suspecting a right answer is the harder half of verification.
+
+### Principles recorded
+- A command that returns the right answer is not the same as a correct command.
+- Prefer a native filter (`-u ssh`) to a text match: a text match is a guess about
+  wording.
+- `-i` is not free. It widens a filter, which is required in some contexts and
+  harmful in others.
+- Stating the boundary of an analysis is part of the analysis. "Six failed logins"
+  invites the reading that there were no others.
+
+## 2026-08-02 (2) — Criterion 5 was recorded as met before it was
+
+### Fixed
+- **Password authentication had remained enabled since 2026-07-30**, while
+  `evidence/phase-00/05-ssh-key-auth.md` recorded the criterion as satisfied.
+- Ubuntu's `sshd_config` includes `/etc/ssh/sshd_config.d/*.conf` at line 24; the
+  manual edit sat at line 78. Cloud-init had written `PasswordAuthentication yes` into
+  `50-cloud-init.conf` at install time, and for most SSH options the first value read
+  wins. The included file was read first and the later edit was ignored. No error was
+  produced.
+- Corrected in the drop-in file, validated with `sshd -t`, confirmed with `sshd -T`,
+  applied with a restart while holding the existing session open.
+
+### Root cause
+- The original verification tested that key-based login succeeded without a prompt, and
+  concluded from that that passwords were disabled. The conclusion did not follow: SSH
+  stops at the first authentication method that succeeds, so a working key hides
+  whether a password would also have been accepted.
+- Surfaced incidentally. A permissions exercise set the home directory to mode 777;
+  `sshd` correctly refused the key and **fell back to a password prompt that
+  succeeded**. The fallback should not have existed.
+
+### Changed
+- `05-ssh-key-auth.md` now records both required tests: that the key works, and that
+  `ssh -o PubkeyAuthentication=no` is refused with `Permission denied (publickey)`.
+- The document opens with a note that it was wrong when first written. The reasoning
+  error is more useful than the corrected result.
+
+### Principles recorded
+- `sshd -T` reports the configuration in force; the file reports an intention.
+- A control is not verified until its failure path has been tested.
+- A setting believed applied but silently overridden is worse than one never attempted:
+  it produces confidence without protection, and nothing signals the gap until
+  something exercises it.
+
 ## 2026-08-02 — Bandit completed, Phase 0 at six of eight
 
 ### Done
